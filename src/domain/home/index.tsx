@@ -1,8 +1,7 @@
-import { User } from '@/@types/user';
-import React from 'react';
+import { HomeView } from './Home.view';
 
 const Home = () => {
-  return <>hello world</>;
+  return <HomeView />;
 };
 
 export default Home;
