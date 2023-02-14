@@ -49,6 +49,10 @@ const GlobalStyle = createGlobalStyle`
     border: none;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   ol,
   ul,
   li {

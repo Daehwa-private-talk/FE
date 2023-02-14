@@ -7,26 +7,28 @@ import theme from './styles/theme';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          {MENUS.map(({ path, component, children }) => {
-            if (children) {
-              return children.map(({ path: _path, component }) => (
-                <Route
-                  key={_path}
-                  path={`${path}/${_path}`}
-                  element={component?.()}
-                />
-              ));
-            }
+    <main>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Routes>
+            {MENUS.map(({ path, component, children }) => {
+              if (children) {
+                return children.map(({ path: _path, component }) => (
+                  <Route
+                    key={_path}
+                    path={`${path}/${_path}`}
+                    element={component?.()}
+                  />
+                ));
+              }
 
-            return <Route key={path} path={path} element={component?.()} />;
-          })}
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+              return <Route key={path} path={path} element={component?.()} />;
+            })}
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </main>
   );
 };
 
