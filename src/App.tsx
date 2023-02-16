@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { Route, Routes } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components';
 import { MENUS } from './constants/menu';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 
 const App: React.FC = () => {
   return (
-    <main>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Main>
         <Routes>
           {MENUS.map(({ path, component, children }) => {
             if (children) {
@@ -25,9 +25,13 @@ const App: React.FC = () => {
             return <Route key={path} path={path} element={component?.()} />;
           })}
         </Routes>
-      </ThemeProvider>
-    </main>
+      </Main>
+    </ThemeProvider>
   );
 };
 
 export default App;
+
+const Main = styled('main')`
+  background-color: ${({ theme }) => theme.colors.purple};
+`;
