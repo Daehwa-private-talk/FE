@@ -1,2 +1,2 @@
 export * from './AuthButton';
-export * from './Ballon';
+export * from './Balloon';

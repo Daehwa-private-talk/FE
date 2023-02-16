@@ -5,7 +5,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export const Ballon = ({ children }: Props) => {
+export const Balloon = function ({ children }: Props) {
   return (
     <Content>
       {children}

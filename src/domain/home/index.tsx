@@ -1,4 +1,4 @@
-import { useHomeController } from '@/hooks/useHomeController';
+import { useHomeController } from '@/hooks/controllers/useHomeController';
 import { HomeView } from './Home.view';
 
 const Home = () => {

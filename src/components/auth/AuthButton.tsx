@@ -2,20 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  width?: number;
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
-export const AuthButton = ({ onClick, children }: Props) => {
-  return <Button onClick={onClick}>{children}</Button>;
+export const AuthButton = function ({ width = 230, onClick, children }: Props) {
+  return (
+    <Button width={width} onClick={onClick}>
+      {children}
+    </Button>
+  );
 };
 
-const Button = styled('button')`
+const Button = styled('button')<{ width?: number }>`
   font-size: 1.1rem;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.yellow};
-  width: 230px;
+  width: ${({ width }) => width}px;
   height: 50px;
   border-radius: 25px;
 
