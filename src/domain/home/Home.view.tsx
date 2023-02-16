@@ -1,13 +1,18 @@
+import { HomeProps } from '@/@types/home';
 import AuthButton from '@/components/auth/AuthButton';
+import { Ballon } from '@/components/auth/Ballon';
+
 import styled from 'styled-components';
 
-export const HomeView = () => {
+export const HomeView = ({ onClickSignIn, onClickSignUp }: HomeProps) => {
   return (
     <Section>
-      <Header>" 대화 "</Header>
+      <Ballon>
+        <Header>" 대화하기 "</Header>
+      </Ballon>
       <ButtonContainer>
-        <AuthButton>로그인</AuthButton>
-        <AuthButton>회원가입</AuthButton>
+        <AuthButton onClick={onClickSignIn}>로그인</AuthButton>
+        <AuthButton onClick={onClickSignUp}>회원가입</AuthButton>
       </ButtonContainer>
     </Section>
   );
@@ -33,5 +38,5 @@ const ButtonContainer = styled('div')`
 const Header = styled('header')`
   font-size: 1.8rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.dark};
 `;
