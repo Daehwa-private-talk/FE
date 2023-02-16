@@ -1,7 +1,6 @@
 import { MenusType } from '@/@types/menu';
-import { User } from '@/@types/user';
-import SignIn from '@/domain/auth/SignIn';
-import SignUp from '@/domain/auth/SignUp';
+import SignIn from '@/domain/auth/sign-in/SignIn';
+import SignUp from '@/domain/auth/sign-up/SignUp';
 import Home from '@/domain/home';
 
 export const MENUS: MenusType = [

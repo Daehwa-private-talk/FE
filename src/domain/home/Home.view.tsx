@@ -1,6 +1,5 @@
 import { HomeProps } from '@/@types/home';
-import AuthButton from '@/components/auth/AuthButton';
-import { Ballon } from '@/components/auth/Ballon';
+import { AuthButton, Ballon } from '@/components/auth';
 
 import styled from 'styled-components';
 

@@ -6,11 +6,9 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const AuthButton = ({ onClick, children }: Props) => {
+export const AuthButton = ({ onClick, children }: Props) => {
   return <Button onClick={onClick}>{children}</Button>;
 };
-
-export default AuthButton;
 
 const Button = styled('button')`
   font-size: 1.1rem;
