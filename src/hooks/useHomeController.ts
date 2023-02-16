@@ -4,11 +4,11 @@ export const useHomeController = () => {
   const navigate = useNavigate();
 
   const handleClickRouteSignIn = () => {
-    navigate('/sign-in');
+    navigate('/auth/sign-in');
   };
 
   const handleClickRouteSignUp = () => {
-    navigate('/sign-up');
+    navigate('/auth/sign-up');
   };
 
   return {

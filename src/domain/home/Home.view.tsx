@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export const HomeView = ({ onClickSignIn, onClickSignUp }: HomeProps) => {
   return (
-    <Section>
+    <section>
       <Ballon>
         <Header>" 대화하기 "</Header>
       </Ballon>
@@ -14,18 +14,9 @@ export const HomeView = ({ onClickSignIn, onClickSignUp }: HomeProps) => {
         <AuthButton onClick={onClickSignIn}>로그인</AuthButton>
         <AuthButton onClick={onClickSignUp}>회원가입</AuthButton>
       </ButtonContainer>
-    </Section>
+    </section>
   );
 };
-
-const Section = styled('section')`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
 const ButtonContainer = styled('div')`
   display: flex;

@@ -42,5 +42,5 @@ const Arrow = styled('div')`
   bottom: 0;
   left: 50%;
   margin-bottom: 1px;
-  transform: translate(-50%, 50%) rotate(130deg);
+  transform: translate(-50%, 50%) rotate(135deg);
 `;
