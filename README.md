@@ -1,2 +1,34 @@
-# FE
-Daehwa FE 
+# 🗣 &nbsp;Daehwa
+
+### [사이드프로젝트]
+채팅 서비스 개발
+<br/>
+<br/>
+
+## 📄 Service
+- [ ] 로그인
+- [ ] 회원가입
+- [ ] 채팅목록
+- [ ] 채팅
+<br/>
+
+## 📝 Study point
+- view, controller 관심사 분리
+- Jotai 적용
+- React-Query 적용
+- auth 인증 및 권한 로직
+- 실시간 통신
+<br/>
+
+## 🤔 Difference
+일반 채팅은 사용자가 입력을 n개 보내면, 말풍선이 n개 보여짐.<br/>
+채팅을 이용하여 대화를 할때 한 흐름 내 말풍선의 수가 많을수록 진정성이 떨어지는 단점이 있기 때문에,<br/>
+"대화" 에서는 상대방이 답장을 보내기전 연속된 시간에 입력받은 내용을 하나의 말풍선으로 묶어줄 예정.
+
+<br/>
+
+## 🔧 Development Stack
+- React.js, Typescript
+- Jotai, React-hook-form, React-Query
+- Styled-Components
+- (Socket.io)
