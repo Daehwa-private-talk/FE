@@ -31,4 +31,4 @@
 - React.js, Typescript
 - Jotai, React-hook-form, React-Query
 - Styled-Components
-- (Socket.io)
+- Socket.io
