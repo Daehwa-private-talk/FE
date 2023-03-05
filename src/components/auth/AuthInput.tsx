@@ -42,7 +42,8 @@ export const AuthTextInput = function <T extends FieldValues>({
 };
 
 const Input = styled('input')`
-  width: 300px;
+  width: 320px;
+  height: 48px;
   padding: ${({ theme }) => theme.spacing(4)};
   border: none;
   outline: none;

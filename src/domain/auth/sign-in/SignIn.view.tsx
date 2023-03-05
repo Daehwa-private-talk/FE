@@ -1,6 +1,5 @@
 import { SignInFormType } from '@/@types/auth';
-import { AuthButton, Balloon } from '@/components/auth';
-import { AuthTextInput } from '@/components/auth/AuthInput';
+import { AuthButton, AuthTextInput, Balloon } from '@/components/auth';
 import styled from 'styled-components';
 
 export const SignInView = ({ control, onSubmit }: SignInFormType) => {
@@ -24,7 +23,7 @@ export const SignInView = ({ control, onSubmit }: SignInFormType) => {
           placeholder="비밀번호"
         />
       </InputContainer>
-      <AuthButton width={300}>로그인</AuthButton>
+      <AuthButton width={320}>로그인</AuthButton>
     </Form>
   );
 };
@@ -50,10 +49,11 @@ const InputContainer = styled('div')`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(2)};
+  margin-bottom: ${({ theme }) => theme.spacing(5)};
 `;
 
 const Label = styled('label')`
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.white};
 `;
