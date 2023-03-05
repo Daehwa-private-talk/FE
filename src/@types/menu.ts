@@ -1,7 +1,9 @@
+import { ReactElement } from 'react';
+
 interface MenuInterface {
   title: string;
   path: string;
-  component?: (e?: any) => JSX.Element;
+  component?: ReactElement;
   children?: MenusType;
 }
 
