@@ -1,12 +1,12 @@
 import { RouteComponentType } from '@/@types/auth';
 import { LIST } from '@/constants/path';
 import NotFound from '@/domain/404';
+import { useAuth } from '@/hooks/atoms/useAuth';
 import { Navigate } from 'react-router-dom';
 
-const PublicRoute = ({
-  isAuthenticated,
-  component: Component,
-}: RouteComponentType) => {
+const PublicRoute = ({ component: Component }: RouteComponentType) => {
+  const { isAuthenticated } = useAuth();
+
   if (isAuthenticated && Component) {
     return <Navigate to={LIST} />;
   }

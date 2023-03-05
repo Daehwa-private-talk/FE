@@ -12,6 +12,5 @@ export interface SignInFormType {
 }
 
 export interface RouteComponentType {
-  isAuthenticated: boolean;
   component?: ReactElement;
 }
