@@ -9,11 +9,8 @@ import { Provider } from 'jotai';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { useAuth } from './hooks/atoms/useAuth';
 
 const App: React.FC = () => {
-  const { isAuthenticated } = useAuth();
-
   return (
     <Provider store={daehwaStore}>
       <ThemeProvider theme={theme}>
