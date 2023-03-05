@@ -21,8 +21,8 @@ const Button = styled('button')<{ width?: number }>`
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.yellow};
   width: ${({ width }) => width}px;
-  height: 50px;
-  border-radius: 25px;
+  height: 56px;
+  border-radius: 28px;
 
   &:hover {
     transform: translateY(-2px);

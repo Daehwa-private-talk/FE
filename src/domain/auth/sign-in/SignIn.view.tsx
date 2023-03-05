@@ -23,7 +23,9 @@ export const SignInView = ({ control, onSubmit }: SignInFormType) => {
           placeholder="비밀번호"
         />
       </InputContainer>
-      <AuthButton width={320}>로그인</AuthButton>
+      <ButtonContainer>
+        <AuthButton width={320}>로그인</AuthButton>
+      </ButtonContainer>
     </Form>
   );
 };
@@ -48,12 +50,16 @@ const Title = styled('h4')`
 const InputContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(2)};
-  margin-bottom: ${({ theme }) => theme.spacing(5)};
+  gap: ${({ theme }) => theme.spacing(3)};
+  margin-bottom: ${({ theme }) => theme.spacing(3)};
 `;
 
 const Label = styled('label')`
   font-size: 0.9rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.white};
+`;
+
+const ButtonContainer = styled('div')`
+  margin-top: ${({ theme }) => theme.spacing(3)};
 `;
