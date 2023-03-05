@@ -4,7 +4,9 @@ import NotFound from '@/domain/404';
 import { useAuth } from '@/hooks/atoms/useAuth';
 import { Navigate } from 'react-router-dom';
 
-const PublicRoute = ({ component: Component }: RouteComponentType) => {
+export const PublicRoute = function ({
+  component: Component,
+}: RouteComponentType) {
   const { isAuthenticated } = useAuth();
 
   if (isAuthenticated && Component) {
@@ -17,5 +19,3 @@ const PublicRoute = ({ component: Component }: RouteComponentType) => {
 
   return Component ?? <NotFound />;
 };
-
-export default PublicRoute;

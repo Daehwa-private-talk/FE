@@ -1,5 +1,4 @@
-import PrivateRoute from '@/components/auth/PrivateRoute';
-import PublicRoute from '@/components/auth/PublicRoute';
+import { PrivateRoute, PublicRoute } from '@/components/auth';
 import { PRIVATE_MENUS, PUBLIC_MENUS } from '@/constants/menus';
 import NotFound from '@/domain/404';
 import { daehwaStore } from '@/store';
