@@ -1,14 +1,15 @@
+import { SIGN_IN_PATH, SIGN_UP_PATH } from '@/constants/path';
 import { useNavigate } from 'react-router-dom';
 
 export const useHomeController = () => {
   const navigate = useNavigate();
 
   const handleClickRouteSignIn = () => {
-    navigate('/auth/sign-in');
+    navigate(SIGN_IN_PATH);
   };
 
   const handleClickRouteSignUp = () => {
-    navigate('/auth/sign-up');
+    navigate(SIGN_UP_PATH);
   };
 
   return {

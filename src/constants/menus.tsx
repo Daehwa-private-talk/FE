@@ -3,26 +3,34 @@ import SignIn from '@/domain/auth/sign-in/SignIn';
 import SignUp from '@/domain/auth/sign-up/SignUp';
 import Home from '@/domain/home';
 
-export const MENUS: MenusType = [
+export const PUBLIC_MENUS: MenusType = [
   {
     title: 'home',
     path: '/',
-    component: Home,
+    component: <Home />,
   },
   {
     title: 'auth',
-    path: 'auth',
+    path: '/auth',
     children: [
       {
         title: '로그인',
-        path: 'sign-in',
-        component: SignIn,
+        path: '/sign-in',
+        component: <SignIn />,
       },
       {
         title: '회원가입',
-        path: 'sign-up',
-        component: SignUp,
+        path: '/sign-up',
+        component: <SignUp />,
       },
     ],
+  },
+];
+
+export const PRIVATE_MENUS: MenusType = [
+  {
+    title: 'list',
+    path: '/list',
+    component: <>list</>,
   },
 ];
