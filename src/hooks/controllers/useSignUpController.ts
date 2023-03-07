@@ -1,8 +1,11 @@
+import { signUpSchema } from '@/@schema/auth';
 import { SignUp } from '@/@types/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 export const useSignUpController = () => {
   const { control, handleSubmit } = useForm<SignUp>({
+    resolver: yupResolver(signUpSchema),
     defaultValues: {
       name: '',
       email: '',

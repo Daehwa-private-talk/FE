@@ -1,8 +1,11 @@
+import { signInSchema } from '@/@schema/auth';
 import { SignIn } from '@/@types/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 export const useSignInController = () => {
   const { control, handleSubmit } = useForm<SignIn>({
+    resolver: yupResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
