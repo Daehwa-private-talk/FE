@@ -4,7 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 export const useSignInController = () => {
-  const { control, handleSubmit } = useForm<SignIn>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignIn>({
     resolver: yupResolver(signInSchema),
     defaultValues: {
       email: '',
@@ -25,5 +29,6 @@ export const useSignInController = () => {
   return {
     control,
     onSubmit,
+    errors,
   };
 };

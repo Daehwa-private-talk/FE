@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Control } from 'react-hook-form';
+import { Control, FieldErrors } from 'react-hook-form';
 
 export interface SignIn {
   email: string;
@@ -16,11 +16,13 @@ export interface SignUp {
 export interface SignInFormType {
   control: Control<SignIn>;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
+  errors: FieldErrors<SignIn>;
 }
 
 export interface SignUpFormType {
   control: Control<SignUp>;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
+  errors: FieldErrors<SignUp>;
 }
 
 export interface RouteComponentType {

@@ -4,7 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 export const useSignUpController = () => {
-  const { control, handleSubmit } = useForm<SignUp>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUp>({
     resolver: yupResolver(signUpSchema),
     defaultValues: {
       name: '',
@@ -27,5 +31,6 @@ export const useSignUpController = () => {
   return {
     control,
     onSubmit,
+    errors,
   };
 };
