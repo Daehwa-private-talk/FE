@@ -1,8 +1,10 @@
-import React from 'react';
+import { useSignUpController } from '@/hooks/controllers/useSignUpController';
 import { SignUpView } from './SignUp.view';
 
 const SignIn = () => {
-  return <SignUpView />;
+  const { control, onSubmit } = useSignUpController();
+
+  return <SignUpView control={control} onSubmit={onSubmit} />;
 };
 
 export default SignIn;
