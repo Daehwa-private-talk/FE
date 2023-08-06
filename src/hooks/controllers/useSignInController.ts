@@ -1,26 +1,58 @@
+import { signInSchema } from '@/@schema/auth';
 import { SignIn } from '@/@types/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { useSignInQuery } from '@/hooks/apis/useSignInQuery';
+import { useEffect, useState } from 'react';
+import { SIGN_IN_DEFAULT_VALUE } from '@/constants/auth';
+import { useNavigate } from 'react-router-dom';
 
 export const useSignInController = () => {
-  const { control, handleSubmit } = useForm<SignIn>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+  const [isValidSignIn, setIsValidSignIn] = useState<boolean>(false);
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<SignIn>({
+    resolver: yupResolver(signInSchema),
+    defaultValues: SIGN_IN_DEFAULT_VALUE,
   });
 
+  const [email, password] = watch(['email', 'password']);
+  const navigate = useNavigate();
+
+  const { data, isLoading, isSuccess, isError } = useSignInQuery(
+    { email, password },
+    !errors && isValidSignIn && email && password,
+  );
+
   const submitSignInInfo: SubmitHandler<SignIn> = (data) => {
-    console.log(data);
+    if (data) {
+      setIsValidSignIn(true);
+    }
   };
 
-  const catchError: SubmitErrorHandler<SignIn> = (error) => {
-    console.log({ error });
+  const catchError: SubmitErrorHandler<SignIn> = () => {
+    setIsValidSignIn(false);
   };
 
   const onSubmit = handleSubmit(submitSignInInfo, catchError);
 
+  useEffect(() => {
+    if (data?.status === 200 && isSuccess) {
+      navigate('/list');
+    }
+
+    if (isValidSignIn && isError) {
+      setIsValidSignIn(false);
+    }
+  }, [isValidSignIn, data, isError]);
+
   return {
     control,
     onSubmit,
+    errors,
+    isLoading,
   };
 };

@@ -17,6 +17,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
     new CleanWebpackPlugin(),
   ],
   resolve: {

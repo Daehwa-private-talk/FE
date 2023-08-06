@@ -1,4 +1,5 @@
-import { SIGN_IN_PATH, TOKEN } from '@/constants/path';
+import { TOKEN } from '@/constants/common';
+import { SIGN_IN_PATH } from '@/constants/path';
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { redirect } from 'react-router-dom';

@@ -1,4 +1,5 @@
 import { PrivateRoute, PublicRoute } from '@/components/auth';
+import ErrorBoundary from '@/components/common/ErrorBoundary';
 import { PRIVATE_MENUS, PUBLIC_MENUS } from '@/constants/menus';
 import NotFound from '@/domain/404';
 import { daehwaStore } from '@/store';
@@ -6,61 +7,69 @@ import GlobalStyle from '@/styles/globalStyle';
 import theme from '@/styles/theme';
 import { Provider } from 'jotai';
 import React from 'react';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 
 const App: React.FC = () => {
   return (
-    <Provider store={daehwaStore}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Main>
-          <Routes>
-            {PUBLIC_MENUS.map(({ path, component, children }) => {
-              if (children) {
-                return children.map(({ path: _path, component }) => (
-                  <Route
-                    key={_path}
-                    path={`${path}${_path}`}
-                    element={<PublicRoute component={component} />}
-                  />
-                ));
-              }
+    <>
+      <ReactQueryDevtools initialIsOpen={false} />
 
-              return (
-                <Route
-                  key={path}
-                  path={path}
-                  element={<PublicRoute component={component} />}
-                />
-              );
-            })}
+      <ErrorBoundary>
+        <Provider store={daehwaStore}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
 
-            {PRIVATE_MENUS.map(({ path, component, children }) => {
-              if (children) {
-                return children.map(({ path: _path, component }) => (
-                  <Route
-                    key={_path}
-                    path={`${path}${_path}`}
-                    element={<PrivateRoute component={component} />}
-                  />
-                ));
-              }
+            <Main>
+              <Routes>
+                {PUBLIC_MENUS.map(({ path, component, children }) => {
+                  if (children) {
+                    return children.map(({ path: _path, component }) => (
+                      <Route
+                        key={_path}
+                        path={`${path}${_path}`}
+                        element={<PublicRoute component={component} />}
+                      />
+                    ));
+                  }
 
-              return (
-                <Route
-                  key={path}
-                  path={path}
-                  element={<PrivateRoute component={component} />}
-                />
-              );
-            })}
+                  return (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={<PublicRoute component={component} />}
+                    />
+                  );
+                })}
 
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </Main>
-      </ThemeProvider>
-    </Provider>
+                {PRIVATE_MENUS.map(({ path, component, children }) => {
+                  if (children) {
+                    return children.map(({ path: _path, component }) => (
+                      <Route
+                        key={_path}
+                        path={`${path}${_path}`}
+                        element={<PrivateRoute component={component} />}
+                      />
+                    ));
+                  }
+
+                  return (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={<PrivateRoute component={component} />}
+                    />
+                  );
+                })}
+
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+            </Main>
+          </ThemeProvider>
+        </Provider>
+      </ErrorBoundary>
+    </>
   );
 };
 
