@@ -12,7 +12,8 @@
 - [ ] 회원가입
 - [ ] 채팅목록
 - [ ] 채팅
-      <br/>
+
+<br/>
 
 ## 📝 Study point
 
@@ -23,7 +24,8 @@
 - React-hook-form
 - auth 인증 및 권한 로직
 - 실시간 통신
-  <br/>
+
+<br/>
 
 ## 🤔 Difference
 
