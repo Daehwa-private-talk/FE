@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import ErrorBoundary from '@/components/common/ErrorBoundary';
 
 const App: React.FC = () => {
   const queryClient = new QueryClient();
@@ -18,57 +19,59 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
-      <Provider store={daehwaStore}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
+      <ErrorBoundary>
+        <Provider store={daehwaStore}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
 
-          <Main>
-            <Routes>
-              {PUBLIC_MENUS.map(({ path, component, children }) => {
-                if (children) {
-                  return children.map(({ path: _path, component }) => (
+            <Main>
+              <Routes>
+                {PUBLIC_MENUS.map(({ path, component, children }) => {
+                  if (children) {
+                    return children.map(({ path: _path, component }) => (
+                      <Route
+                        key={_path}
+                        path={`${path}${_path}`}
+                        element={<PublicRoute component={component} />}
+                      />
+                    ));
+                  }
+
+                  return (
                     <Route
-                      key={_path}
-                      path={`${path}${_path}`}
+                      key={path}
+                      path={path}
                       element={<PublicRoute component={component} />}
                     />
-                  ));
-                }
+                  );
+                })}
 
-                return (
-                  <Route
-                    key={path}
-                    path={path}
-                    element={<PublicRoute component={component} />}
-                  />
-                );
-              })}
+                {PRIVATE_MENUS.map(({ path, component, children }) => {
+                  if (children) {
+                    return children.map(({ path: _path, component }) => (
+                      <Route
+                        key={_path}
+                        path={`${path}${_path}`}
+                        element={<PrivateRoute component={component} />}
+                      />
+                    ));
+                  }
 
-              {PRIVATE_MENUS.map(({ path, component, children }) => {
-                if (children) {
-                  return children.map(({ path: _path, component }) => (
+                  return (
                     <Route
-                      key={_path}
-                      path={`${path}${_path}`}
+                      key={path}
+                      path={path}
                       element={<PrivateRoute component={component} />}
                     />
-                  ));
-                }
+                  );
+                })}
 
-                return (
-                  <Route
-                    key={path}
-                    path={path}
-                    element={<PrivateRoute component={component} />}
-                  />
-                );
-              })}
-
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </Main>
-        </ThemeProvider>
-      </Provider>
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+            </Main>
+          </ThemeProvider>
+        </Provider>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 };
