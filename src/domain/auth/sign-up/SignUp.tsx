@@ -1,4 +1,4 @@
-import { useSignUpController } from '@/hooks/controllers/useSignUpController';
+import { useSignUpController } from '@/hooks/controllers/auth/useSignUpController';
 import { SignUpView } from './SignUp.view';
 
 const SignIn = () => {

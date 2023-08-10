@@ -2,13 +2,14 @@ import { signInSchema } from '@/@schema/auth';
 import { SignIn } from '@/@types/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { useSignInQuery } from '@/hooks/apis/useSignInQuery';
+import { useSignInQuery } from '@/hooks/models/auth/useSignInQuery.model';
 import { useEffect, useState } from 'react';
 import { SIGN_IN_DEFAULT_VALUE } from '@/constants/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const useSignInController = () => {
   const [isValidSignIn, setIsValidSignIn] = useState<boolean>(false);
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -20,7 +21,6 @@ export const useSignInController = () => {
   });
 
   const [email, password] = watch(['email', 'password']);
-  const navigate = useNavigate();
 
   const { data, isLoading, isSuccess, isError } = useSignInQuery(
     { email, password },

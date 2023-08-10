@@ -8,12 +8,12 @@ import theme from '@/styles/theme';
 import { Provider } from 'jotai';
 import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
 
       <ErrorBoundary>
@@ -69,7 +69,7 @@ const App: React.FC = () => {
           </ThemeProvider>
         </Provider>
       </ErrorBoundary>
-    </>
+    </BrowserRouter>
   );
 };
 
