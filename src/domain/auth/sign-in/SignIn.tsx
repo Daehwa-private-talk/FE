@@ -1,14 +1,10 @@
-import { useSignInController } from '@/hooks/controllers/useSignInController';
+import { useSignInController } from '@/hooks/controllers/auth/useSignInController';
 import { SignInView } from './SignIn.view';
 
 const SignIn = () => {
-  const { control, onSubmit, errors, isLoading } = useSignInController();
+  const { control, onSubmit, errors } = useSignInController();
 
-  return isLoading ? (
-    <>로그인 중</>
-  ) : (
-    <SignInView control={control} onSubmit={onSubmit} errors={errors} />
-  );
+  return <SignInView control={control} onSubmit={onSubmit} errors={errors} />;
 };
 
 export default SignIn;

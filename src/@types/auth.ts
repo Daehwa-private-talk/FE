@@ -6,13 +6,15 @@ export interface SignIn {
   password: string;
 }
 
-export interface SignUp {
+export interface SignUpSchema {
   name: string;
   email: string;
   birthday: string;
   password: string;
   confirmPassword: string;
 }
+
+export type SignUp = Omit<SignUpSchema, 'confirmPassword'>;
 
 export interface SignInFormType {
   control: Control<SignIn>;
@@ -21,9 +23,9 @@ export interface SignInFormType {
 }
 
 export interface SignUpFormType {
-  control: Control<SignUp>;
+  control: Control<SignUpSchema>;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
-  errors: FieldErrors<SignUp>;
+  errors: FieldErrors<SignUpSchema>;
 }
 
 export interface RouteComponentType {

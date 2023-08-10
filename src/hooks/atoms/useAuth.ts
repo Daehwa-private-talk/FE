@@ -1,4 +1,4 @@
-import { TOKEN } from '@/constants/common';
+import { ACCESS_TOKEN } from '@/constants/common';
 import { SIGN_IN_PATH } from '@/constants/path';
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -10,7 +10,7 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useAtom(authAtom);
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
+    const token = localStorage.getItem(ACCESS_TOKEN);
 
     if (!token) {
       setIsAuthenticated(false);

@@ -1,8 +1,6 @@
-import { SignIn, SignUp as SignUpBase } from '@/@types/auth';
+import { SignIn, SignUp, SignUpSchema as SignUpBase } from '@/@types/auth';
 import { BASE_URL, SIGN_IN_PATH, SIGN_UP_PATH } from '@/constants/path';
 import requester from '@/utils/requester';
-
-type SignUp = Omit<SignUpBase, 'confirmPassword'>;
 
 const AuthApi = {
   signIn: ({ email, password }: SignIn) => {
