@@ -1,5 +1,5 @@
 import { signUpSchema } from '@/@schema/auth';
-import { SignUp, SignUpSchema } from '@/@types/auth';
+import { SignUpSchema } from '@/@types/auth';
 import { SIGN_UP_DEFAULT_VALUE } from '@/constants/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
@@ -33,12 +33,14 @@ export const useSignUpController = () => {
     !errors && isValidSignUp && email && name && birthday && password,
   );
 
-  const submitSignUpInfo: SubmitHandler<SignUp> = (data) => {
-    console.log(data);
+  const submitSignUpInfo: SubmitHandler<SignUpSchema> = (signUpData) => {
+    if (signUpData) {
+      setIsValidSignUp(true);
+    }
   };
 
-  const catchError: SubmitErrorHandler<SignUp> = (error) => {
-    console.log({ error });
+  const catchError: SubmitErrorHandler<SignUpSchema> = () => {
+    setIsValidSignUp(false);
   };
 
   const onSubmit = handleSubmit(submitSignUpInfo, catchError);
