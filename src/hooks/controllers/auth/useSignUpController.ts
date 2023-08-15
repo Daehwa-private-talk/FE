@@ -1,5 +1,5 @@
 import { signUpSchema } from '@/@schema/auth';
-import { SignUpSchema } from '@/@types/auth';
+import { SignUp, SignUpSchema } from '@/@types/auth';
 import { SIGN_UP_DEFAULT_VALUE } from '@/constants/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
@@ -7,9 +7,11 @@ import { useSignUpQuery } from '@/hooks/models/auth/useSignUpQuery.model';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SIGN_IN_PATH } from '@/constants/path';
+import { isEmpty, omit } from 'lodash';
 
 export const useSignUpController = () => {
   const [isValidSignUp, setIsValidSignUp] = useState<boolean>(false);
+  const [userData, setUserData] = useState<SignUp>();
   const navigate = useNavigate();
   const {
     control,
@@ -21,21 +23,22 @@ export const useSignUpController = () => {
     defaultValues: SIGN_UP_DEFAULT_VALUE,
   });
 
-  const [name, email, birthday, password] = watch([
+  const [name, email, nickname, password] = watch([
     'name',
     'email',
-    'birthday',
+    'nickname',
     'password',
   ]);
 
   const { data, isLoading, isSuccess, isError } = useSignUpQuery(
-    { email, name, birthday, password },
-    !errors && isValidSignUp && email && name && birthday && password,
+    { email, name, nickname, password },
+    Boolean(isEmpty(errors) && isValidSignUp && userData),
   );
 
   const submitSignUpInfo: SubmitHandler<SignUpSchema> = (signUpData) => {
     if (signUpData) {
       setIsValidSignUp(true);
+      setUserData(omit(signUpData, 'confirmPassword'));
     }
   };
 

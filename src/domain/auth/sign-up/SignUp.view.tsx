@@ -20,6 +20,24 @@ export const SignUpView = ({ control, onSubmit, errors }: SignUpFormType) => {
         />
       </InputContainer>
       <InputContainer>
+        <Label>ID</Label>
+        <AuthTextInput
+          name="nickname"
+          control={control}
+          placeholder="ID"
+          error={errors.nickname}
+        />
+      </InputContainer>
+      {/* <InputContainer>
+        <Label>생일</Label>
+        <AuthTextInput
+          name="birthday"
+          control={control}
+          placeholder="생일"
+          error={errors.birthday}
+        />
+      </InputContainer> */}
+      <InputContainer>
         <Label>이메일</Label>
         <AuthTextInput
           name="email"
@@ -43,7 +61,7 @@ export const SignUpView = ({ control, onSubmit, errors }: SignUpFormType) => {
         <Label>비밀번호 확인</Label>
         <AuthTextInput
           name="confirmPassword"
-          type="confirmPassword"
+          type="password"
           control={control}
           placeholder="영문/숫자/특수문자 포함 8자 이상의 비밀번호"
           error={errors.confirmPassword}

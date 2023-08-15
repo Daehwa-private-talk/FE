@@ -9,12 +9,13 @@ export interface SignIn {
 export interface SignUpSchema {
   name: string;
   email: string;
-  birthday: string;
+  birthday?: string;
+  nickname: string;
   password: string;
   confirmPassword: string;
 }
 
-export type SignUp = Omit<SignUpSchema, 'confirmPassword'>;
+export type SignUp = Omit<SignUpSchema, 'confirmPassword' | 'birthday'>;
 
 export interface SignInFormType {
   control: Control<SignIn>;

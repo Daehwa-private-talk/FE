@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
-const PASSWORD_RULE_REGEXP =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+const PASSWORD_RULE_REGEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 export const signInSchema = yup.object().shape({
   email: yup.string().email().required('이메일을 입력해주세요.'),
@@ -10,6 +9,7 @@ export const signInSchema = yup.object().shape({
 
 export const signUpSchema = yup.object().shape({
   name: yup.string().required('이름을 입력해주세요.'),
+  nickname: yup.string().required('ID를 입력해주세요.'),
   email: yup
     .string()
     .email('이메일 형식에 맞게 입력해주세요.')
