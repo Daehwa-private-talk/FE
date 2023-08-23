@@ -1,29 +1,36 @@
-import { SignIn, SignUp } from '@/@types/auth';
+import { AuthRefreshToken, SignIn, SignUp } from '@/@types/auth';
 import {
-  BASE_URL,
-  MIDDLE_URL,
+  REFRESH_PATH,
   SIGN_IN_PATH,
   SIGN_UP_PATH,
-} from '@/constants/path';
+} from '@/constants/path/auth';
 import requester from '@/utils/requester';
+import { getFullPath } from '@/utils/common';
 
 const AuthApi = {
   signIn: ({ email, password }: SignIn) => {
-    console.log('api : ', BASE_URL + MIDDLE_URL + SIGN_IN_PATH);
+    const path = getFullPath(SIGN_IN_PATH);
 
-    return requester.post(BASE_URL + MIDDLE_URL + SIGN_IN_PATH, {
+    return requester.post(path, {
       email,
       password,
     });
   },
   signUp: ({ name, email, nickname, password }: SignUp) => {
-    console.log('api : ', BASE_URL + MIDDLE_URL + SIGN_UP_PATH);
+    const path = getFullPath(SIGN_UP_PATH);
 
-    return requester.post(BASE_URL + MIDDLE_URL + SIGN_UP_PATH, {
+    return requester.post(path, {
       name,
       email,
       nickname,
       password,
+    });
+  },
+  refresh: ({ refreshToken }: AuthRefreshToken) => {
+    const path = getFullPath(REFRESH_PATH);
+
+    return requester.post(path, {
+      refreshToken,
     });
   },
 };

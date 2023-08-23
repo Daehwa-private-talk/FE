@@ -1,5 +1,5 @@
 import { RouteComponentType } from '@/@types/auth';
-import { LIST } from '@/constants/path';
+import { LIST } from '@/constants/path/chat';
 import NotFound from '@/domain/404';
 import { useAuth } from '@/hooks/atoms/useAuth';
 import { Navigate } from 'react-router-dom';

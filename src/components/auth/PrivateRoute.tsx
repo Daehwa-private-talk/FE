@@ -1,5 +1,5 @@
 import { RouteComponentType } from '@/@types/auth';
-import { SIGN_IN_PATH } from '@/constants/path';
+import { SIGN_IN_PATH } from '@/constants/path/auth';
 import NotFound from '@/domain/404';
 import { useAuth } from '@/hooks/atoms/useAuth';
 import { Navigate } from 'react-router-dom';

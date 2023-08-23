@@ -1,4 +1,4 @@
-import { ERROR } from '@/constants/common';
+import { ERROR } from '@/constants/messages';
 import React from 'react';
 import Fallback from './Fallback';
 

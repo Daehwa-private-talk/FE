@@ -1,5 +1,6 @@
 import { SignIn } from '@/@types/auth';
 import AuthApi from '@/apis/AuthApi';
+import { Cookie } from '@/utils/cookie';
 import { useQuery } from 'react-query';
 
 export const useSignInQuery = (params: SignIn, isValidSignIn: boolean) => {
@@ -15,8 +16,8 @@ export const useSignInQuery = (params: SignIn, isValidSignIn: boolean) => {
       const REFRESH_TOKEN = process.env.REACT_APP_REFRESH_TOKEN;
 
       if (ACCESS_TOKEN && REFRESH_TOKEN && accessToken && refreshToken) {
-        localStorage.setItem(ACCESS_TOKEN, accessToken);
-        localStorage.setItem(REFRESH_TOKEN, refreshToken);
+        Cookie.setCookie(ACCESS_TOKEN, accessToken);
+        Cookie.setCookie(REFRESH_TOKEN, refreshToken);
       }
     },
   });

@@ -1,4 +1,4 @@
-import { SIGN_IN_PATH, SIGN_UP_PATH } from '@/constants/path';
+import { SIGN_IN_PATH, SIGN_UP_PATH } from '@/constants/path/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const useHomeController = () => {

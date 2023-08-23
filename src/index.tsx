@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import { CookiesProvider } from 'react-cookie';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from './App';
@@ -13,7 +14,9 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>,
+  <CookiesProvider>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </CookiesProvider>,
 );

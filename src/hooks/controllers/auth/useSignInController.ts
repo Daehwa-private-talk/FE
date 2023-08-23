@@ -1,16 +1,18 @@
-import { signInSchema } from '@/@schema/auth';
 import { SignIn as SignInSchema } from '@/@types/auth';
 import { SIGN_IN_DEFAULT_VALUE } from '@/constants/auth';
-import { LIST } from '@/constants/path';
+import { SERVER_SUCCESS_CODE } from '@/constants/code';
+import { useAuth } from '@/hooks/atoms/useAuth';
 import { useSignInQuery } from '@/hooks/models/auth/useSignInQuery.model';
+import { signInSchema } from '@/schema/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 export const useSignInController = () => {
   const [isValidSignIn, setIsValidSignIn] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
+
   const {
     control,
     handleSubmit,
@@ -25,11 +27,11 @@ export const useSignInController = () => {
 
   const { data, isLoading, isSuccess, isError } = useSignInQuery(
     { email, password },
-    !errors && isValidSignIn && email && password,
+    Boolean(isEmpty(errors) && isValidSignIn && email && password),
   );
 
   const submitSignInInfo: SubmitHandler<SignInSchema> = (signInData) => {
-    if (signInData) {
+    if (!isEmpty(signInData)) {
       setIsValidSignIn(true);
     }
   };
@@ -41,13 +43,15 @@ export const useSignInController = () => {
   const onSubmit = handleSubmit(submitSignInInfo, catchError);
 
   useEffect(() => {
-    if (data?.status === 200 && isSuccess) {
-      navigate(LIST);
+    if (data?.data.status.code === SERVER_SUCCESS_CODE && isSuccess) {
+      setIsAuthenticated(true);
     }
 
     if (isValidSignIn && isError) {
       setIsValidSignIn(false);
     }
+
+    return () => setIsValidSignIn(false);
   }, [isValidSignIn, data, isError]);
 
   return {
