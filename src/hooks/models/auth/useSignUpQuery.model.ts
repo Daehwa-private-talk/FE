@@ -1,13 +1,9 @@
 import { SignUp } from '@/@types/auth';
 import AuthApi from '@/apis/AuthApi';
-import { useQuery } from 'react-query';
-import { omit } from 'lodash';
+import { useMutation } from 'react-query';
 
-export const useSignUpQuery = (params: SignUp, isValidSignIn: boolean) => {
-  const queryKey = ['auth', 'sign-up', omit(params, 'password')];
-  const queryFn = () => AuthApi.signUp(params);
+export const useSignUpQuery = () => {
+  const queryFn = (params: SignUp) => AuthApi.signUp(params);
 
-  return useQuery(queryKey, queryFn, {
-    enabled: isValidSignIn,
-  });
+  return useMutation(queryFn);
 };
