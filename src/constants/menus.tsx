@@ -1,7 +1,8 @@
 import { MenusType } from '@/@types/menu';
 import SignIn from '@/domain/auth/sign-in/SignIn';
 import SignUp from '@/domain/auth/sign-up/SignUp';
-import Home from '@/domain/home';
+import Home from '@/domain/home/Home';
+import List from '@/domain/list/List';
 
 export const PUBLIC_MENUS: MenusType = [
   {
@@ -31,6 +32,6 @@ export const PRIVATE_MENUS: MenusType = [
   {
     title: 'list',
     path: '/list',
-    component: <>list</>,
+    component: <List />,
   },
 ];
