@@ -1,4 +1,5 @@
 import { ListViewProps } from '@/@types/list';
+import { Profile } from '@/components/profile/Profile';
 import styled, { css } from 'styled-components';
 
 const ListView = ({
@@ -37,21 +38,11 @@ const ListView = ({
         </FriendListContainer>
       </MainContainer>
       <SideMenu>
-        <ProfileContainer>
-          <ProfileImageContainer>
-            <source type="image/webp" srcSet="#" />
-            <ProfileImage
-              loading="lazy"
-              sizes="(max-width: 350px)"
-              decoding="async"
-              src="#"
-              alt="profile"
-            />
-          </ProfileImageContainer>
-        </ProfileContainer>
-        <ProfileContentContainer>
-          <ProfileName>이지원</ProfileName>
-        </ProfileContentContainer>
+        <Profile
+          profileImage={'#'}
+          name={'이지원'}
+          statusMessage={'이것은 상태메세지입니다.'}
+        />
       </SideMenu>
     </Wrapper>
   );
@@ -102,7 +93,6 @@ const Nav = styled('nav')`
 
 const NavItem = styled('div')`
   display: inline-flex;
-
   cursor: pointer;
 `;
 
@@ -142,36 +132,6 @@ const SideMenu = styled('aside')`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.purple};
   box-shadow: -2px 0px 4px rgba(30, 30, 30, 0.3);
-`;
-
-const ProfileContainer = styled('article')`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: ${({ theme }) => theme.spacing(40)} 0
-    ${({ theme }) => theme.spacing(20)};
-`;
-
-const ProfileImageContainer = styled('picture')`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  border: 8px solid ${({ theme }) => theme.colors.yellow};
-`;
-
-const ProfileImage = styled('img')``;
-
-const ProfileContentContainer = styled('div')`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ProfileName = styled('h4')`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 24px;
 `;
 
 const ProfileContent = styled('p')``;
