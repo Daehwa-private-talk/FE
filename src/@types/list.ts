@@ -1,7 +1,9 @@
+import { FriendsType } from './user';
+
 export interface ListViewProps {
   isOpenSidebar: boolean;
-  favoriteList: any[];
-  friendList: any[];
+  favoriteList: FriendsType;
+  friendList: FriendsType;
   onClickChat: () => void;
   onClickSignOut: () => void;
   chatCount: number;

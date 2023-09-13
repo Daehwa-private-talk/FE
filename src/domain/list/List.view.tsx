@@ -1,8 +1,9 @@
 import { ListViewProps } from '@/@types/list';
-import { Profile } from '@/components/profile/Profile';
-import styled, { css } from 'styled-components';
+import { ProfileLayout } from '@/components/layout/ProfileLayout';
+import { Friend } from '@/components/list/Friend';
+import styled from 'styled-components';
 
-const ListView = ({
+export const ListView = ({
   isOpenSidebar,
   favoriteList,
   friendList,
@@ -11,129 +12,62 @@ const ListView = ({
   chatCount,
 }: ListViewProps) => {
   return (
-    <Wrapper open={isOpenSidebar}>
-      <MainContainer>
-        <Header>
-          <Logo>DAE:HWA</Logo>
-
-          <Nav>
-            <NavItem>
-              <NavItemButton onClick={onClickChat}>대화</NavItemButton>
-              <Count>{chatCount}</Count>
-            </NavItem>
-            <NavItem>
-              <NavSignOutButton onClick={onClickSignOut}>
-                로그아웃
-              </NavSignOutButton>
-            </NavItem>
-          </Nav>
-        </Header>
-        <FriendListContainer>
-          {favoriteList.map((_, index) => (
-            <FavoritesContainer key={index}>asssd</FavoritesContainer>
+    <ProfileLayout
+      isOpenSidebar={isOpenSidebar}
+      onClickChat={onClickChat}
+      onClickSignOut={onClickSignOut}
+      chatCount={chatCount}
+    >
+      <FriendListContainer>
+        <FriendListHeader>
+          <FriendListHeaderTitle>친구 목록</FriendListHeaderTitle>
+        </FriendListHeader>
+        <FriendList>
+          <ListTitle>즐겨찾는 친구</ListTitle>
+          {favoriteList.map((item) => (
+            <Friend key={item.id} {...item} background="yellow" />
           ))}
-          {friendList.map((_, index) => (
-            <FriendsContainer key={index}>asssd</FriendsContainer>
+          <ListTitle>친구</ListTitle>
+          {friendList.map((item) => (
+            <Friend key={item.id} {...item} background="gray" />
           ))}
-        </FriendListContainer>
-      </MainContainer>
-      <SideMenu>
-        <Profile
-          profileImage={'#'}
-          name={'이지원'}
-          statusMessage={'이것은 상태메세지입니다.'}
-        />
-      </SideMenu>
-    </Wrapper>
+        </FriendList>
+      </FriendListContainer>
+    </ProfileLayout>
   );
 };
 
-const Wrapper = styled('section')<{ open: boolean }>`
+const FriendListHeader = styled('div')`
   width: 100%;
-  height: 100%;
-  display: grid;
-  background-color: ${({ theme }) => theme.colors.white};
-
-  ${({ open }) => {
-    if (open) {
-      return css`
-        grid-template-columns: 1fr 500px;
-      `;
-    }
-  }}
-`;
-
-const MainContainer = styled('div')`
-  width: 100%;
-  height: 100%;
-`;
-
-const Header = styled('header')`
-  width: 100%;
-  height: 80px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 ${({ theme }) => theme.spacing(20)};
-  background-color: ${({ theme }) => theme.colors.purple};
-  box-shadow: 0px 1px 2.5px rgba(30, 30, 30, 0.5);
+  padding: ${({ theme }) => theme.spacing(20)};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
-const Logo = styled('h1')`
-  font-size: 30px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.yellow};
+const FriendListHeaderTitle = styled('h2')`
+  color: ${({ theme }) => theme.colors.darkGray};
+  font-size: 24px;
 `;
 
-const Nav = styled('nav')`
-  display: inline-flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(20)};
-`;
-
-const NavItem = styled('div')`
-  display: inline-flex;
-  cursor: pointer;
-`;
-
-const NavItemButton = styled('button')`
-  color: ${({ theme }) => theme.colors.white};
-  background: none;
-  font-size: 19px;
-  padding: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(4)}`};
-`;
-
-const NavSignOutButton = styled('button')`
-  color: ${({ theme }) => theme.colors.white};
-  background: none;
-  font-size: 19px;
-  padding: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(4)}`};
-`;
-
-const Count = styled('span')`
-  height: 34px;
-  background-color: ${({ theme }) => theme.colors.red};
-  color: ${({ theme }) => theme.colors.white};
-  border-radius: 12px;
-  padding: ${({ theme }) => `${theme.spacing(1)} ${theme.spacing(2)}`};
-  text-align: center;
+const FriendListContainer = styled('div')`
   display: flex;
-  align-items: center;
+  flex-direction: column;
 `;
 
-const FriendListContainer = styled('div')``;
-
-const FavoritesContainer = styled('article')``;
-
-const FriendsContainer = styled('article')``;
-
-const SideMenu = styled('aside')`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.purple};
-  box-shadow: -2px 0px 4px rgba(30, 30, 30, 0.3);
+const ListTitle = styled('h4')`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.darkGray};
+  padding: ${({ theme }) => `${theme.spacing(5)} ${theme.spacing(20)}`};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
-const ProfileContent = styled('p')``;
-
-export default ListView;
+const FriendList = styled('li')`
+  height: calc(100vh - 160px);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+`;

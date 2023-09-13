@@ -1,6 +1,6 @@
-import initialProfileUrl from '@/assets/images/initialProfile.svg';
 import React from 'react';
 import styled from 'styled-components';
+import { Avatar } from './Avatar';
 
 interface Props {
   profileImage?: string;
@@ -12,16 +12,7 @@ export const Profile = ({ profileImage, name, statusMessage }: Props) => {
   return (
     <React.Fragment>
       <ProfileContainer>
-        <ImageContainer>
-          <source type="image/webp" srcSet={initialProfileUrl} />
-          <Image
-            loading="lazy"
-            sizes="(max-width: 350px)"
-            decoding="async"
-            src={profileImage}
-            alt="profile"
-          />
-        </ImageContainer>
+        <Avatar profileImage={profileImage} />
       </ProfileContainer>
       <ProfileContentContainer>
         <Name>{name}</Name>
@@ -42,16 +33,6 @@ const ProfileContainer = styled('article')`
   margin: ${({ theme }) => theme.spacing(40)} 0
     ${({ theme }) => theme.spacing(20)};
 `;
-
-const ImageContainer = styled('picture')`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  border: 8px solid ${({ theme }) => theme.colors.yellow};
-  background-color: ${({ theme }) => theme.colors.yellow};
-`;
-
-const Image = styled('img')``;
 
 const ProfileContentContainer = styled('div')`
   display: flex;
