@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Cookie } from './cookie';
-import AuthApi from '@/apis/AuthApi';
 
 const TIME_OUT = 1000 * 120;
 

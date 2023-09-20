@@ -3,9 +3,10 @@ import { CookiesProvider } from 'react-cookie';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from './App';
+import { worker } from '../__mock__/worker';
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development mode!');
+  worker.start();
 }
 
 const queryClient = new QueryClient();
