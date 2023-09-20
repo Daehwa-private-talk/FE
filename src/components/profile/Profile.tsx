@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Avatar } from './Avatar';
+import { UserType } from '@/@types/user';
 
 interface Props {
-  profileImage?: string;
-  name: string;
-  statusMessage?: string;
+  userInfo: UserType;
 }
 
-export const Profile = ({ profileImage, name, statusMessage }: Props) => {
+export const Profile = ({ userInfo }: Props) => {
+  const { name, profileImage, statusMessage } = userInfo;
   return (
     <React.Fragment>
       <ProfileContainer>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ProfileLayout } from '@/components/layout/ProfileLayout';
 import { ListView } from './List.view';
 
 const dummy = [
@@ -24,14 +24,20 @@ const dummy = [
 
 const List = () => {
   return (
-    <ListView
+    <ProfileLayout
+      userInfo={{
+        id: -1,
+        name: 'Heman',
+        profileImage: '#',
+        statusMessage: '이것은 상태메세지입니다.',
+      }}
       isOpenSidebar={true}
-      favoriteList={[dummy[0]]}
-      friendList={dummy}
       onClickChat={() => {}}
       onClickSignOut={() => {}}
       chatCount={1000}
-    />
+    >
+      <ListView favoriteList={[dummy[0]]} friendList={dummy} />
+    </ProfileLayout>
   );
 };
 

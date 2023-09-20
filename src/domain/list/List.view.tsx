@@ -1,39 +1,29 @@
-import { ListViewProps } from '@/@types/list';
-import { ProfileLayout } from '@/components/layout/ProfileLayout';
+import { FriendsType } from '@/@types/user';
 import { Friend } from '@/components/list/Friend';
 import styled from 'styled-components';
 
-export const ListView = ({
-  isOpenSidebar,
-  favoriteList,
-  friendList,
-  onClickChat,
-  onClickSignOut,
-  chatCount,
-}: ListViewProps) => {
+interface Props {
+  favoriteList: FriendsType;
+  friendList: FriendsType;
+}
+
+export const ListView = ({ favoriteList, friendList }: Props) => {
   return (
-    <ProfileLayout
-      isOpenSidebar={isOpenSidebar}
-      onClickChat={onClickChat}
-      onClickSignOut={onClickSignOut}
-      chatCount={chatCount}
-    >
-      <FriendListContainer>
-        <FriendListHeader>
-          <FriendListHeaderTitle>친구 목록</FriendListHeaderTitle>
-        </FriendListHeader>
-        <FriendList>
-          <ListTitle>즐겨찾는 친구</ListTitle>
-          {favoriteList.map((item) => (
-            <Friend key={item.id} {...item} background="yellow" />
-          ))}
-          <ListTitle>친구</ListTitle>
-          {friendList.map((item) => (
-            <Friend key={item.id} {...item} background="gray" />
-          ))}
-        </FriendList>
-      </FriendListContainer>
-    </ProfileLayout>
+    <FriendListContainer>
+      <FriendListHeader>
+        <FriendListHeaderTitle>친구 목록</FriendListHeaderTitle>
+      </FriendListHeader>
+      <FriendList>
+        <ListTitle>즐겨찾는 친구</ListTitle>
+        {favoriteList.map((item) => (
+          <Friend key={item.id} {...item} background="yellow" />
+        ))}
+        <ListTitle>친구</ListTitle>
+        {friendList.map((item) => (
+          <Friend key={item.id} {...item} background="gray" />
+        ))}
+      </FriendList>
+    </FriendListContainer>
   );
 };
 

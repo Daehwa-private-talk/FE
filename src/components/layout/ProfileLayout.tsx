@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components';
 
 import React from 'react';
 import { Profile } from '../profile/Profile';
+import { UserType } from '@/@types/user';
 
 interface Props {
+  userInfo: UserType;
   isOpenSidebar: boolean;
   chatCount: number;
   onClickChat: () => void;
@@ -12,6 +14,7 @@ interface Props {
 }
 
 export const ProfileLayout = ({
+  userInfo,
   isOpenSidebar,
   chatCount,
   onClickChat,
@@ -39,11 +42,7 @@ export const ProfileLayout = ({
         {children}
       </MainContainer>
       <SideMenu>
-        <Profile
-          profileImage={'#'}
-          name={'Heman'}
-          statusMessage={'이것은 상태메세지입니다.'}
-        />
+        <Profile userInfo={userInfo} />
       </SideMenu>
     </Wrapper>
   );
