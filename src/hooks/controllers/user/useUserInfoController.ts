@@ -1,3 +1,1 @@
-export const useUserInfoController = () => {
-  const;
-};
+export const useUserInfoController = () => {};

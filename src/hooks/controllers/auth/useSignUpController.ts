@@ -1,5 +1,4 @@
 import { SignUpSchema } from '@/@types/auth';
-import { SIGN_UP_DEFAULT_VALUE } from '@/constants/auth';
 import { SIGN_IN_PATH } from '@/constants/path/auth';
 import { useSignUpQuery } from '@/hooks/models/auth/useSignUpQuery.model';
 import { signUpSchema } from '@/schema/auth';
@@ -7,6 +6,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { isEmpty, omit } from 'lodash';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+
+const SIGN_UP_DEFAULT_VALUE = {
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 export const useSignUpController = () => {
   const navigate = useNavigate();

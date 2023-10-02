@@ -1,5 +1,4 @@
 import { SignIn as SignInSchema } from '@/@types/auth';
-import { SIGN_IN_DEFAULT_VALUE } from '@/constants/auth';
 import { useAuth } from '@/hooks/atoms/useAuth';
 import { useSignInQuery } from '@/hooks/models/auth/useSignInQuery.model';
 import { signInSchema } from '@/schema/auth';
@@ -7,6 +6,8 @@ import { Cookie } from '@/utils/cookie';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { isEmpty } from 'lodash';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+const SIGN_IN_DEFAULT_VALUE = { email: '', password: '' };
 
 export const useSignInController = () => {
   const { setIsAuthenticated } = useAuth();
