@@ -7,11 +7,11 @@ import { Navigate } from 'react-router-dom';
 export const PrivateRoute = function ({
   component: Component,
 }: RouteComponentType) {
-  // const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  // if (!isAuthenticated) {
-  //   return <Navigate to={SIGN_IN_PATH} />;
-  // }
+  if (!isAuthenticated) {
+    return <Navigate to={SIGN_IN_PATH} />;
+  }
 
   return Component ?? <NotFound />;
 };

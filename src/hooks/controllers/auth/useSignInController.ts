@@ -5,7 +5,12 @@ import { signInSchema } from '@/schema/auth';
 import { Cookie } from '@/utils/cookie';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { isEmpty } from 'lodash';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import {
+  FieldErrors,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 
 const SIGN_IN_DEFAULT_VALUE = { email: '', password: '' };
 
@@ -24,7 +29,7 @@ export const useSignInController = () => {
   const { mutate } = useSignInQuery();
 
   const submitSignInInfo: SubmitHandler<SignInSchema> = (signInData) => {
-    if (!signInData || !isEmpty(signInData)) {
+    if (!signInData || isEmpty(signInData)) {
       return;
     }
 
@@ -45,11 +50,21 @@ export const useSignInController = () => {
       },
       onError: () => {
         setIsAuthenticated(false);
+
+        window.alert('로그인에 실패했습니다.');
       },
     });
   };
 
-  const onSubmit = handleSubmit(submitSignInInfo);
+  const catchError: SubmitErrorHandler<SignInSchema> = (
+    error: FieldErrors<SignInSchema>,
+  ) => {
+    setIsAuthenticated(false);
+
+    console.log('Submit Error: ', error);
+  };
+
+  const onSubmit = handleSubmit(submitSignInInfo, catchError);
 
   return {
     control,
