@@ -1,9 +1,12 @@
-import { HomeProps } from '@/@types/home';
 import { AuthButton, Balloon } from '@/components/auth';
-
 import styled from 'styled-components';
 
-export const HomeView = ({ onClickSignIn, onClickSignUp }: HomeProps) => {
+interface Props {
+  onClickSignIn: () => void;
+  onClickSignUp: () => void;
+}
+
+export const HomeView = ({ onClickSignIn, onClickSignUp }: Props) => {
   return (
     <section>
       <Balloon>

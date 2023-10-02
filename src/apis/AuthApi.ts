@@ -1,4 +1,4 @@
-import { AuthRefreshToken, SignIn, SignUp } from '@/@types/auth';
+import { SignIn, SignUp } from '@/@types/auth';
 import {
   REFRESH_PATH,
   SIGN_IN_PATH,
@@ -6,6 +6,10 @@ import {
 } from '@/constants/path/auth';
 import requester from '@/utils/requester';
 import { getFullPath } from '@/utils/common';
+
+interface AuthRefreshToken {
+  refreshToken: string;
+}
 
 const AuthApi = {
   signIn: ({ email, password }: SignIn) => {

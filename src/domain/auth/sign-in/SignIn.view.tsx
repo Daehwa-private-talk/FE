@@ -1,8 +1,15 @@
-import { SignInFormType } from '@/@types/auth';
+import { SignIn } from '@/@types/auth';
 import { AuthButton, AuthTextInput, Balloon } from '@/components/auth';
+import { Control, FieldErrors } from 'react-hook-form';
 import styled from 'styled-components';
 
-export const SignInView = ({ control, onSubmit, errors }: SignInFormType) => {
+interface Props {
+  control: Control<SignIn>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  errors: FieldErrors<SignIn>;
+}
+
+export const SignInView = ({ control, onSubmit, errors }: Props) => {
   return (
     <Form onSubmit={onSubmit}>
       <Header>

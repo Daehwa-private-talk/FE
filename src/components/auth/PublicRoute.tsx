@@ -1,4 +1,4 @@
-import { RouteComponentType } from '@/@types/auth';
+import { RouteComponentType } from '@/@types/route';
 import { LIST } from '@/constants/path/chat';
 import NotFound from '@/domain/404';
 import { useAuth } from '@/hooks/atoms/useAuth';

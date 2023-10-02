@@ -1,4 +1,4 @@
-import { RouteComponentType } from '@/@types/auth';
+import { RouteComponentType } from '@/@types/route';
 import { SIGN_IN_PATH } from '@/constants/path/auth';
 import NotFound from '@/domain/404';
 import { useAuth } from '@/hooks/atoms/useAuth';
