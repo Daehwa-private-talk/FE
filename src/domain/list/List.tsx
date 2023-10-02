@@ -1,42 +1,35 @@
 import { ProfileLayout } from '@/components/layout/ProfileLayout';
+import { useUser } from '@/hooks/atoms/useUser';
+import { useFriendListController } from '@/hooks/controllers/list/useFriendListController';
+import { Cookie } from '@/utils/cookie';
 import { ListView } from './List.view';
 
-const dummy = [
-  {
-    id: 1,
-    name: 'Riahn',
-    isFavorite: true,
-    statusMessage: '저는 리안입니다',
-  },
-  {
-    id: 2,
-    name: 'Hani',
-    isFavorite: false,
-    statusMessage: '저는 하니입니다',
-  },
-  {
-    id: 3,
-    name: 'Shef',
-    isFavorite: false,
-    statusMessage: '저는 세프입니다',
-  },
-];
-
 const List = () => {
+  const {
+    friends,
+    favoriteFriends,
+    favoriteFriendsCount,
+    totalFriendsCount,
+  } = useFriendListController();
+  const { userDefaultInfo } = useUser();
+
   return (
     <ProfileLayout
-      userInfo={{
-        id: -1,
-        name: 'Heman',
-        profileImage: '#',
-        statusMessage: '이것은 상태메세지입니다.',
-      }}
+      userInfo={userDefaultInfo}
       isOpenSidebar={true}
       onClickChat={() => {}}
-      onClickSignOut={() => {}}
+      onClickSignOut={() => {
+        Cookie.removeCookie(process.env.REACT_APP_ACCESS_TOKEN || '');
+        Cookie.removeCookie(process.env.REACT_APP_REFRESH_TOKEN || '');
+      }}
       chatCount={1000}
     >
-      <ListView favoriteList={[dummy[0]]} friendList={dummy} />
+      <ListView
+        favoriteList={favoriteFriends}
+        totalFriendsCount={totalFriendsCount}
+        friendList={friends}
+        favoriteFriendsCount={favoriteFriendsCount}
+      />
     </ProfileLayout>
   );
 };

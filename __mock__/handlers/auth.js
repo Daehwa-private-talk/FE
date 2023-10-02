@@ -9,6 +9,29 @@ const signInResult = {
     accessToken: 'test-mouth-heman-access-token',
     refreshToken: 'test-mouth-heman-refresh-token',
   },
+  friendsInfo: {
+    totalFriendsCount: 3,
+    friends: [
+      {
+        id: 1,
+        name: 'Riahn',
+        isFavorite: true,
+        statusMessage: '저는 리안입니다',
+      },
+      {
+        id: 2,
+        name: 'Shaw',
+        isFavorite: false,
+        statusMessage: '저는 쇼입니다',
+      },
+      {
+        id: 3,
+        name: 'Shef',
+        isFavorite: false,
+        statusMessage: '저는 세프입니다',
+      },
+    ],
+  },
 };
 
 export const authHandlers = [

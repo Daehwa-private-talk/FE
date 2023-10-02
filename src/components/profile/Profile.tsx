@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Avatar } from './Avatar';
-import { UserType } from '@/@types/user';
+import { UserDefaultType } from '@/@types/user';
 
 interface Props {
-  userInfo: UserType;
+  userInfo: UserDefaultType;
 }
 
 export const Profile = ({ userInfo }: Props) => {

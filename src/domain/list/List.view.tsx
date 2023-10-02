@@ -5,20 +5,29 @@ import styled from 'styled-components';
 interface Props {
   favoriteList: FriendsType;
   friendList: FriendsType;
+  totalFriendsCount: number;
+  favoriteFriendsCount?: number;
 }
 
-export const ListView = ({ favoriteList, friendList }: Props) => {
+export const ListView = ({
+  favoriteList,
+  friendList,
+  totalFriendsCount,
+  favoriteFriendsCount,
+}: Props) => {
   return (
     <FriendListContainer>
       <FriendListHeader>
         <FriendListHeaderTitle>친구 목록</FriendListHeaderTitle>
       </FriendListHeader>
       <FriendList>
-        <ListTitle>즐겨찾는 친구</ListTitle>
+        <ListTitle>
+          즐겨찾는 친구 ({favoriteFriendsCount || favoriteList.length})
+        </ListTitle>
         {favoriteList.map((item) => (
           <Friend key={item.id} {...item} background="yellow" />
         ))}
-        <ListTitle>친구</ListTitle>
+        <ListTitle>친구 ({totalFriendsCount || friendList.length})</ListTitle>
         {friendList.map((item) => (
           <Friend key={item.id} {...item} background="gray" />
         ))}

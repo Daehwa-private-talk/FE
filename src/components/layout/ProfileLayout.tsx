@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import { UserDefaultType } from '@/@types/user';
 import React from 'react';
 import { Profile } from '../profile/Profile';
-import { UserType } from '@/@types/user';
 
 interface Props {
-  userInfo: UserType;
+  userInfo: UserDefaultType;
   isOpenSidebar: boolean;
   chatCount: number;
   onClickChat: () => void;

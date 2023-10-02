@@ -1,5 +1,6 @@
 import { SignIn as SignInSchema } from '@/@types/auth';
 import { useAuth } from '@/hooks/atoms/useAuth';
+import { useUser } from '@/hooks/atoms/useUser';
 import { useSignInQuery } from '@/hooks/models/auth/useSignInQuery.model';
 import { signInSchema } from '@/schema/auth';
 import { Cookie } from '@/utils/cookie';
@@ -16,6 +17,7 @@ const SIGN_IN_DEFAULT_VALUE = { email: '', password: '' };
 
 export const useSignInController = () => {
   const { setIsAuthenticated } = useAuth();
+  const { setUser } = useUser();
 
   const {
     control,
@@ -35,8 +37,8 @@ export const useSignInController = () => {
 
     mutate(signInData, {
       onSuccess: (response) => {
-        const { accessToken, refreshToken } =
-          response.data?.result?.token || {};
+        const { token } = response.data.result || {};
+        const { accessToken, refreshToken } = token || {};
 
         const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
         const REFRESH_TOKEN = process.env.REACT_APP_REFRESH_TOKEN;
@@ -45,6 +47,7 @@ export const useSignInController = () => {
           Cookie.setCookie(ACCESS_TOKEN, accessToken);
           Cookie.setCookie(REFRESH_TOKEN, refreshToken);
 
+          setUser(response.data.result);
           setIsAuthenticated(true);
         }
       },
