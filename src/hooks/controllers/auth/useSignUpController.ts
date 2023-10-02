@@ -28,7 +28,7 @@ export const useSignUpController = () => {
   const { mutate } = useSignUpQuery();
 
   const submitSignUpInfo: SubmitHandler<SignUpSchema> = (signUpData) => {
-    if (!signUpData || !isEmpty(signUpData)) {
+    if (!signUpData || isEmpty(signUpData)) {
       return;
     }
 

@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-const me = {
+const signInResult = {
   id: -1,
   name: 'Heman',
   profileImage: '#',
@@ -21,7 +21,20 @@ export const authHandlers = [
           code: 2000,
         },
         success: true,
-        result: me,
+        result: signInResult,
+      }),
+    );
+  }),
+  rest.post('*/auth/sign-up', (_, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: {
+          message: 'OK',
+          code: 2000,
+        },
+        success: true,
+        result: {},
       }),
     );
   }),
