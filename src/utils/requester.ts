@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { Cookie } from './cookie';
+import AuthApi from '@/apis/AuthApi';
 
 const TIME_OUT = 1000 * 120;
+const UNAUTHORIZED = 401;
+
+let isRefreshing = false;
 
 const requester = axios.create({
   baseURL:
@@ -24,16 +28,33 @@ requester.interceptors.response.use(
       process.env.REACT_APP_REFRESH_TOKEN || '',
     );
 
-    console.log(error.response, originalRequest, refreshToken);
+    if (
+      error.response &&
+      error.response.status === UNAUTHORIZED &&
+      !originalRequest._retry &&
+      !isRefreshing
+    ) {
+      isRefreshing = true;
 
-    // if (error.response) {
-    //   return AuthApi.refresh({ refreshToken }).then((response) => {
-    //     if (response.data?.result) {
-    //       Cookie.setCookie(REFRESH_TOKEN, response.data.result.refreshToken);
-    //       Cookie.setCookie(ACCESS_TOKEN, response.data.result.accessToken);
-    //     }
-    //   });
-    // }
+      return AuthApi.refresh({ refreshToken })
+        .then((response) => {
+          originalRequest._retry = true;
+          Cookie.setCookie('refreshToken', response.data.result?.refreshToken);
+
+          return axios(originalRequest);
+        })
+        .catch((error) => {
+          Cookie.removeCookie('refreshToken');
+          window.location.assign('/session_expired');
+
+          return Promise.reject(error);
+        })
+        .finally(() => {
+          isRefreshing = false;
+        });
+    }
+
+    return Promise.reject(error);
   },
 );
 
